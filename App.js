@@ -1,18 +1,20 @@
 import { StatusBar } from "expo-status-bar";
-import RootNavigator from "./src/navigation";
-
 import { NavigationContainer } from "@react-navigation/native";
-import { LogBox } from "react-native";
+import Navigation from "./src/navigation";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { AuthProvider } from "./src/context/AuthContext";
+import { LogBox } from "react-native";
 
 LogBox.ignoreAllLogs();
 export default function App() {
   return (
-    <NavigationContainer>
+    <GestureHandlerRootView style={{ flex: 1 }}>
       <AuthProvider>
-        <RootNavigator />
-        <StatusBar style="light" />
+        <NavigationContainer>
+          <Navigation />
+          <StatusBar style="auto" />
+        </NavigationContainer>
       </AuthProvider>
-    </NavigationContainer>
+    </GestureHandlerRootView>
   );
 }
